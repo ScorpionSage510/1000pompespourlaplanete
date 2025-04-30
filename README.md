@@ -34,7 +34,7 @@ Retrouvez les ressources suivantes dans la section [**Releases**](https://github
 ## Comment Utiliser
 
 1.  **Jouer en Ligne :** Cliquez sur le [lien du jeu](https://scorpionsage510.github.io/1000pompespourlaplanete/) ci-dessus.
-2. **Jouer en local :** Dans `Code`, vous pouvez télécharger le .zip du site et y jouer localement en ouvrant `index.html` sur votre navigateur.  
+2. **Jouer en local :** Dans `Code`, vous pouvez télécharger le .zip du site, l'extraire et y jouer localement en ouvrant `index.html` sur votre navigateur.  
 3.  **Utiliser les Cartes :**
     *   Rendez-vous sur la page [Releases](https://github.com/ScorpionSage510/1000pompespourlaplanete/releases/latest).
     *   Téléchargez le fichier `.apkg` et/ou `.pdf`.
@@ -42,5 +42,3 @@ Retrouvez les ressources suivantes dans la section [**Releases**](https://github
 
 
 ---
-
-*(Ajoutez ici d'autres sections si nécessaire : Comment Contribuer, Licence, Technologies Utilisées, etc.)*
