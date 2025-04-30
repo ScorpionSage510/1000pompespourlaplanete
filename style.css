@@ -1,0 +1,143 @@
+/* --- Styles généraux, Config, Zone de Jeu, Cartes, Slots --- */
+/* ... (Identique à la version précédente, y compris la correction du layout .game-area) ... */
+body { font-family: sans-serif; background-color: #f0f0f0; display: flex; flex-direction: column; align-items: center; padding: 20px; position: relative; }
+h1, h2 { text-align: center; color: #333; margin-bottom: 15px; }
+.setup-area { display: flex; flex-direction: column; align-items: center; margin-bottom: 25px; width: 95%; max-width: 600px; }
+.game-config { background-color: #e8f5e9; padding: 12px 20px; border-radius: 8px; border: 1px solid #a5d6a7; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 15px; display: inline-block; }
+.game-config label { margin-right: 10px; font-weight: bold; color: #2e7d32; }
+.game-config input[type="number"] { width: 55px; padding: 5px 8px; border: 1px solid #a5d6a7; border-radius: 4px; font-size: 1em; text-align: center; }
+#restart-button { padding: 12px 25px; font-size: 1.1em; font-weight: bold; cursor: pointer; border: none; border-radius: 5px; background-color: #1976d2; color: white; display: inline-block; transition: background-color 0.2s; }
+#restart-button:hover { background-color: #1565c0; }
+.game-area { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); width: 95%; /* Prend la largeur */ min-height: 650px; display: flex; flex-direction: column; align-items: center; box-sizing: border-box; }
+.deck-info { align-self: flex-end; margin-bottom: 15px; font-size: 0.9em; color: #555; }
+.timeline-area, .player-hand-area { margin-bottom: 30px; width: 100%; text-align: center; }
+.timeline-area h2 { margin-bottom: 10px; }
+.timeline-cards { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; min-height: 200px; padding: 10px; border: 1px dashed #ccc; border-radius: 5px; background-color: #fafafa; }
+.card { border: 3px solid #ccc; border-radius: 8px; margin: 8px; width: 120px; height: 170px; display: inline-block; vertical-align: top; background-color: #eee; box-shadow: 0 1px 4px rgba(0,0,0,0.1); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; position: relative; overflow: hidden; cursor: default; }
+.player-hand .card { cursor: pointer; border-color: #00acc1; }
+.player-hand .card:hover:not(.broken):not(.selected):not(.revealed) { transform: translateY(-5px) scale(1.03); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+.player-hand .card.selected { border-color: #ff9800; box-shadow: 0 0 12px #ff9800; transform: scale(1.06); }
+.player-hand .card.revealed { border-color: #e91e63; box-shadow: 0 0 14px #e91e63; transform: scale(1.00); opacity: 0.7; cursor: default; }
+.card.broken { border-color: red !important; background-color: #ffebee !important; cursor: not-allowed !important; opacity: 0.6; }
+.card.broken:hover { transform: none; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+.card.broken span { font-size: 0.7em; color: red; word-break: break-word; padding: 5px; display: flex; align-items: center; justify-content: center; height: 100%; }
+.timeline-cards .card { border-color: #fdd835; }
+.timeline-cards .card.broken { opacity: 0.6; }
+.placement-slot { width: 35px; height: 170px; border: 2px dashed #aaa; border-radius: 5px; display: inline-flex; align-items: center; justify-content: center; margin: 8px 5px; cursor: default; transition: background-color 0.2s, border-color 0.2s; font-size: 1.8em; color: #aaa; background-color: rgba(200, 200, 200, 0.1); }
+.game-area.phase-selectSlot .placement-slot:not(.selected):hover { background-color: rgba(0, 172, 193, 0.1); border-color: #00acc1; color: #00acc1; cursor: pointer; }
+.placement-slot.selected { background-color: rgba(255, 152, 0, 0.2); border-color: #ff9800; color: #ff9800; border-style: solid; cursor: default; }
+.placement-slot::before { content: "+"; }
+.card-image { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: 5px; }
+.player-hand { display: flex; flex-wrap: wrap; justify-content: center; min-height: 200px; }
+.controls { margin-top: 20px; text-align: center; width: 100%; }
+#instruction { font-style: italic; color: #555; min-height: 1.2em; margin-bottom: 15px; font-size: 1.1em; }
+.message-area { margin-top: 15px; font-size: 1.1em; font-weight: bold; min-height: 25px; }
+#message.success { color: #2e7d32; } #message.error { color: #c62828; } #message.info { color: #0277bd; }
+
+/* --- Styles pour le Modal (Zone de Comparaison ajoutée) --- */
+.modal-overlay { /* ... (inchangé) ... */
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); display: flex; justify-content: center; align-items: center;
+    z-index: 1000; padding: 15px; box-sizing: border-box; opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+.modal-overlay.visible { opacity: 1; visibility: visible; transition: opacity 0.3s ease, visibility 0s linear 0s; }
+
+.modal-content { /* ... (inchangé) ... */
+    background-color: white; padding: 20px; border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); text-align: center;
+    max-width: 90%; /* Plus flexible */
+    width: auto; /* S'adapte au contenu, jusqu'à max-width */
+    display: flex; flex-direction: column; align-items: center;
+    max-height: 95vh; /* Légèrement plus d'espace vertical */
+    overflow-y: auto;
+    transform: scale(0.95); transition: transform 0.3s ease;
+}
+.modal-overlay.visible .modal-content { transform: scale(1); }
+
+.modal-content h2 { margin-top: 0; margin-bottom: 15px; color: #333; }
+
+/* NOUVEAU: Style pour la zone de comparaison */
+.modal-comparison-area {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centre verticalement les cartes */
+    gap: 15px; /* Espace entre les cartes */
+    margin-bottom: 25px;
+    width: 100%; /* Prend la largeur du modal */
+    flex-wrap: wrap; /* Permet le passage à la ligne si écran trop petit */
+}
+
+/* Style pour la carte principale DANS le modal */
+.modal-card-preview {
+    /* width: 40%; */ /* Prend une part proportionnelle */
+    max-width: 250px; /* Limite max taille carte principale */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.modal-card-preview img {
+    display: block; width: 100%; height: auto;
+    max-height: 50vh; /* Limite hauteur */
+    object-fit: contain; border: 2px solid #e91e63; /* Bordure rose pour la distinguer */
+    border-radius: 6px; background-color: #f9f9f9;
+}
+
+/* Style pour les cartes voisines DANS le modal */
+.modal-adjacent-card {
+    /* width: 25%; */ /* Prend une part plus petite */
+    max-width: 150px; /* Limite taille cartes voisines */
+    opacity: 0.8; /* Légèrement moins visibles */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100px; /* Espace même si vide */
+}
+.modal-adjacent-card img {
+    display: block; width: 100%; height: auto;
+    max-height: 40vh; /* Plus petites que la principale */
+    object-fit: contain; border: 1px solid #ccc;
+    border-radius: 4px; background-color: #f9f9f9;
+}
+/* Style pour masquer si pas de carte voisine */
+.modal-adjacent-card.hidden {
+    visibility: hidden; /* Cache l'élément mais garde l'espace */
+}
+
+/* Styles pour les labels au-dessus des cartes dans le modal */
+.adjacent-label {
+    font-size: 0.8em;
+    color: #777;
+    margin-bottom: 5px;
+    font-weight: bold;
+    display: block; /* Assure qu'il prend sa ligne */
+}
+.main-card-label {
+    color: #e91e63; /* Rose pour correspondre à la bordure */
+    font-size: 0.9em;
+}
+/* Style pour l'ID sous les cartes voisines */
+.adjacent-id {
+    font-size: 0.75em;
+    color: #999;
+    margin-top: 5px;
+    display: block;
+    min-height: 1em; /* Espace même si vide */
+}
+
+
+.modal-content p#modal-instruction { margin-top: 10px; margin-bottom: 20px; color: #555; font-size: 1.1em; }
+.modal-buttons button { /* ... (inchangé) ... */
+    padding: 12px 25px; font-size: 1em; font-weight: bold; margin: 0 15px;
+    cursor: pointer; border: none; border-radius: 5px; color: white;
+    transition: background-color 0.2s, transform 0.1s;
+}
+.modal-buttons button:hover { opacity: 0.9; }
+.modal-buttons button:active { transform: scale(0.97); }
+.modal-buttons button:disabled { background-color: #bdbdbd; cursor: not-allowed; opacity: 0.7; }
+#modal-btn-confirm-oui { background-color: #4caf50; }
+#modal-btn-confirm-non { background-color: #f44336; }
+.modal-error-message { margin-top: 5px; color: red; font-weight: bold; font-size: 0.9em; }
+
+/* Bloque scroll body */
+body.modal-open { overflow: hidden; }

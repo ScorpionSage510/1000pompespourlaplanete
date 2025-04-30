@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1000 Pompes pour la Planète - Le Jeu</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>1000 Pompes pour la Planète</h1>
+
+    <!-- Configuration et Bouton Start/Restart en HAUT -->
+    <div class="setup-area">
+        <div class="game-config" id="game-config">
+            <label for="hand-size-input">Cartes en main :</label>
+            <input type="number" id="hand-size-input" value="5" min="1" max="15">
+        </div>
+        <button id="restart-button">Commencer / Recommencer</button>
+    </div>
+
+    <div class="game-area">
+
+        <div class="deck-info">
+            Pioche restante: <span id="deck-count">0</span>
+        </div>
+
+        <!-- Zone Timeline -->
+        <div class="timeline-area">
+            <h2>Séquence (Versos)</h2>
+            <div class="timeline-cards" id="timeline-cards">
+                <!-- Cartes et slots injectés -->
+            </div>
+        </div>
+
+        <!-- Zone Main Joueur -->
+        <div class="player-hand-area">
+            <h2>Votre Main (Rectos)</h2>
+            <div class="player-hand" id="player-hand">
+                <!-- Cartes joueur injectées -->
+            </div>
+        </div>
+
+        <!-- Zone Instructions -->
+        <div class="controls">
+             <p id="instruction">1. Cliquez sur une carte de votre main...</p>
+        </div>
+
+        <!-- Zone Messages -->
+        <div class="message-area">
+            <p id="message"></p>
+        </div>
+
+    </div>
+
+    <!-- Modal de Confirmation (Structure Interne Modifiée) -->
+    <div id="confirmation-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Confirmer le Placement</h2>
+
+            <!-- Zone de comparaison visuelle -->
+            <div class="modal-comparison-area">
+                <!-- Carte Voisine Gauche (si existe) -->
+                <div class="modal-adjacent-card">
+                    <span class="adjacent-label">Avant</span>
+                    <img id="modal-prev-card-image" src="" alt="Carte Précédente">
+                    <span id="modal-prev-card-id" class="adjacent-id"></span>
+                </div>
+
+                <!-- Carte à Placer (Grande) -->
+                <div class="modal-card-preview">
+                     <span class="adjacent-label main-card-label">Votre Carte</span>
+                    <img id="modal-card-image" src="" alt="Carte Révélée (Verso)">
+                    <p id="modal-image-error" class="modal-error-message" style="display: none;">Erreur chargement image.</p>
+                </div>
+
+                <!-- Carte Voisine Droite (si existe) -->
+                <div class="modal-adjacent-card">
+                     <span class="adjacent-label">Après</span>
+                    <img id="modal-next-card-image" src="" alt="Carte Suivante">
+                    <span id="modal-next-card-id" class="adjacent-id"></span>
+                </div>
+            </div>
+            <!-- Fin Zone de comparaison -->
+
+
+            <p id="modal-instruction">Ce placement est-il correct ?</p>
+
+            <div class="modal-buttons">
+                <button id="modal-btn-confirm-oui">OUI (Correct)</button>
+                <button id="modal-btn-confirm-non">NON (Incorrect)</button>
+            </div>
+        </div>
+    </div>
+    <!-- FIN Modal de Confirmation -->
+
+
+    <script src="script.js"></script>
+</body>
+</html>
