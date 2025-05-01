@@ -6,6 +6,8 @@
 
 ➡️ **Jouer maintenant :** [**https://scorpionsage510.github.io/1000pompespourlaplanete/**](https://scorpionsage510.github.io/1000pompespourlaplanete/)
 
+![1000 Pompes pour la planète](https://raw.githubusercontent.com/ScorpionSage510/Images/main/1000Pompespourlaplanete.jpeg)  
+
 ---
 
 ## À Propos du Projet
