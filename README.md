@@ -16,7 +16,7 @@ Ce projet est une adaptation web interactive du concept original "[1000 Pompes P
 
 L'objectif est simple : classer l'énergie nécessaire à la réalisation de plusieurs actions.
 
-*A savoir que ce jeu a été créé par une IA*.
+*A savoir que ce code a été créé par une IA*.
 
 ---
 
