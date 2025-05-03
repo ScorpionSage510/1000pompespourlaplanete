@@ -27,14 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Configuration ---
     // !!!!!!!!!! IMPORTANT !!!!!!!!!!
-    const TOTAL_UNIQUE_CARDS = 30; // <--- METTEZ VOTRE NOMBRE TOTAL RÉEL ICI
+    const TOTAL_UNIQUE_CARDS = 50; // <--- METTEZ VOTRE NOMBRE TOTAL RÉEL ICI
     // !!!!!!!!!! IMPORTANT !!!!!!!!!!
     const ID_PADDING = 3;
     const IMAGE_BASE_PATH_RECTO = "cartes_decoupees/Recto/"; // Utiliser /
     const IMAGE_BASE_PATH_VERSO = "cartes_decoupees/Verso/"; // Utiliser /
     const DEFAULT_STARTING_HAND_SIZE = 5;
     const MIN_HAND_SIZE = 1;
-    const MAX_HAND_SIZE = 15;
+    const MAX_HAND_SIZE = 45;
     console.log(`[Config] TOTAL_UNIQUE_CARDS = ${TOTAL_UNIQUE_CARDS}`);
 
     // --- État du jeu ---
